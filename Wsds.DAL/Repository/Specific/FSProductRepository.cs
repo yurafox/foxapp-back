@@ -124,7 +124,7 @@ namespace Wsds.DAL.Repository.Specific
                     OracleDataReader dr = cmd.ExecuteReader();
                     dr.FetchSize = cmd.RowSize * 100;
                     var j = 0;
-                    while (dr.Read() && (j<=149))
+                    while (dr.Read() && (j<=99))
                     {
                         var item = _csp.Item(Int64.Parse(dr["id"].ToString()));
                         if (item != null)
@@ -158,14 +158,6 @@ namespace Wsds.DAL.Repository.Specific
         public IEnumerable<Product_DTO> SearchProductsInCache(string srchString)
         {
             return _csp.Items.Values.Where(x => IsFound(x.name, srchString));
-        }
-
-        public IEnumerable<ProductReview_DTO> GetProductReviews(long id)
-        {
-            var cnfg = EntityConfigDictionary.GetConfig("product_reviews");
-            var prov = new EntityProvider<ProductReview_DTO>(cnfg);
-            var reviews = prov.GetItems("id_product = :id", new OracleParameter("id", id));
-            return reviews;
         }
     }
 }
