@@ -178,6 +178,9 @@
     <Compile Include="Models\AuthModelTest.cs" />
     <Compile Include="Models\PaymentModelTest.cs" />
     <Compile Include="Models\PaymentResultModelTest.cs" />
+    <Compile Include="Models\RegisterModelTest.cs" />
+    <Compile Include="Models\RoleShortModelTest.cs" />
+    <Compile Include="Models\VerifyModelTest.cs" />
     <Compile Include="UnitEntryPointTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
