@@ -516,6 +516,7 @@
     <Compile Include="Controllers\QuotationProductControllerTests.cs" />
     <Compile Include="Controllers\ReviewControllerTests.cs" />
     <Compile Include="Controllers\RoleControllerTests.cs" />
+    <Compile Include="Controllers\StockControllerTests.cs" />
     <Compile Include="Fixtures\TestHostContext.cs" />
     <Compile Include="Models\AuthModelTest.cs" />
     <Compile Include="Models\ClientOrderControllerTests.cs" />
@@ -524,6 +525,7 @@
     <Compile Include="Models\RegisterModelTest.cs" />
     <Compile Include="Models\RoleShortModelTest.cs" />
     <Compile Include="Models\VerifyModelTest.cs" />
+    <Compile Include="SaveReviewControllerTests.cs.cs" />
     <Compile Include="UnitEntryPointTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
