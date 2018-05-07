@@ -175,5 +175,148 @@ namespace Wsds.Tests.Controllers
             _mockIClientRepository.Verify(x => x.GetClientByPhone(It.IsAny<string>()), Times.Once);
             _mockIStorePlaceRepository.Verify(x => x.AddFavoriteStore(It.IsAny<long>(), It.IsAny<long>()), Times.Once);
         }
+
+        [Theory]
+        [InlineData(1)]
+        [InlineData(100)]
+        public void AddFavoriteStoreStatusCode200(long id)
+        {
+            _storePlaceController.ControllerContext = new ControllerContext();
+            _storePlaceController.ControllerContext.HttpContext = new DefaultHttpContext();
+
+            var token = new TokenModel() { Phone = "380120000000", Card = 1, ClientId = 1 };
+            var client = new Client_DTO() { id = 1 };
+            _storePlaceController.ControllerContext.HttpContext.Items["token"] = token;
+
+            _mockIClientRepository.Setup(x => x.GetClientByPhone(It.IsAny<string>())).Returns(client);
+            _mockIStorePlaceRepository.Setup(x => x.AddFavoriteStore(It.IsAny<long>(), It.IsAny<long>())).Returns(0);
+
+            var result = _storePlaceController.AddFavoriteStore(id);
+            Assert.IsType<ObjectResult>(result);
+            Assert.NotNull(result);
+            Assert.Equal(200, ((ObjectResult)result).StatusCode);
+
+            _mockIClientRepository.Verify(x => x.GetClientByPhone(It.IsAny<string>()), Times.Once);
+            _mockIStorePlaceRepository.Verify(x => x.AddFavoriteStore(It.IsAny<long>(), It.IsAny<long>()), Times.Once);
+        }
+
+        [Theory]
+        [InlineData(1)]
+        [InlineData(100)]
+        public void AddFavoriteStoreStatusBadRequestTest1(long id)
+        {
+            _storePlaceController.ControllerContext = new ControllerContext();
+            _storePlaceController.ControllerContext.HttpContext = new DefaultHttpContext();
+
+            var token = new TokenModel() { Phone = "380120000000", Card = 1, ClientId = 1 };
+            var client = new Client_DTO();
+            _storePlaceController.ControllerContext.HttpContext.Items["token"] = token;
+
+            _mockIClientRepository.Setup(x => x.GetClientByPhone(It.IsAny<string>())).Returns(client);
+            _mockIStorePlaceRepository.Setup(x => x.AddFavoriteStore(It.IsAny<long>(), It.IsAny<long>())).Returns(0);
+
+            var result = _storePlaceController.AddFavoriteStore(id);
+
+            Assert.IsType<BadRequestResult>(result);
+        }
+
+        [Theory]
+        [InlineData(0)]
+        public void AddFavoriteStoreStatusBadRequestTest2(long id)
+        {
+            _storePlaceController.ControllerContext = new ControllerContext();
+            _storePlaceController.ControllerContext.HttpContext = new DefaultHttpContext();
+
+            var token = new TokenModel() { Phone = "380120000000", Card = 1, ClientId = 1 };
+            var client = new Client_DTO() { id = 1 };
+            _storePlaceController.ControllerContext.HttpContext.Items["token"] = token;
+
+            _mockIClientRepository.Setup(x => x.GetClientByPhone(It.IsAny<string>())).Returns(client);
+            _mockIStorePlaceRepository.Setup(x => x.AddFavoriteStore(It.IsAny<long>(), It.IsAny<long>())).Returns(0);
+
+            var result = _storePlaceController.AddFavoriteStore(id);
+
+            Assert.IsType<BadRequestResult>(result);
+        }
+
+        [Theory]
+        [InlineData(1)]
+        [InlineData(100)]
+        public void DeleteFavoriteStoreSuccessTest(long id)
+        {
+            _storePlaceController.ControllerContext = new ControllerContext();
+            _storePlaceController.ControllerContext.HttpContext = new DefaultHttpContext();
+
+            var token = new TokenModel() { Phone = "380120000000", Card = 1, ClientId = 1 };
+            var client = new Client_DTO() { id = 1 };
+            _storePlaceController.ControllerContext.HttpContext.Items["token"] = token;
+
+            _mockIClientRepository.Setup(x => x.GetClientByPhone(It.IsAny<string>())).Returns(client);
+            _mockIStorePlaceRepository.Setup(x => x.DeleteFavoriteStore(It.IsAny<long>(), It.IsAny<long>())).Returns(1);
+
+            var result = _storePlaceController.DeleteFavoriteStore(id);
+            Assert.IsType<OkObjectResult>(result);
+
+            _mockIClientRepository.Verify(x => x.GetClientByPhone(token.Phone), Times.Once);
+            _mockIStorePlaceRepository.Verify(x => x.DeleteFavoriteStore(id, (long)client.id), Times.Once);
+        }
+
+        [Theory]
+        [InlineData(1)]
+        [InlineData(100)]
+        public void DeleteFavoriteStoreStatusCode200(long id)
+        {
+            _storePlaceController.ControllerContext = new ControllerContext();
+            _storePlaceController.ControllerContext.HttpContext = new DefaultHttpContext();
+
+            var token = new TokenModel() { Phone = "380120000000", Card = 1, ClientId = 1 };
+            var client = new Client_DTO() { id = 1 };
+            _storePlaceController.ControllerContext.HttpContext.Items["token"] = token;
+
+            _mockIClientRepository.Setup(x => x.GetClientByPhone(It.IsAny<string>())).Returns(client);
+            _mockIStorePlaceRepository.Setup(x => x.DeleteFavoriteStore(It.IsAny<long>(), It.IsAny<long>())).Returns(0);
+
+            var result = _storePlaceController.DeleteFavoriteStore(id);
+            Assert.IsType<ObjectResult>(result);
+            Assert.NotNull(result);
+            Assert.Equal(200, ((ObjectResult)result).StatusCode);
+        }
+
+        [Theory]
+        [InlineData(1)]
+        [InlineData(100)]
+        public void DeleteFavoriteStoreFailTestOne(long id)
+        {
+            _storePlaceController.ControllerContext = new ControllerContext();
+            _storePlaceController.ControllerContext.HttpContext = new DefaultHttpContext();
+
+            var token = new TokenModel() { Phone = "380120000000", Card = 1, ClientId = 1 };
+            var client = new Client_DTO() { id = 1 };
+
+            _mockIClientRepository.Setup(x => x.GetClientByPhone(It.IsAny<string>())).Returns(client);
+            _mockIStorePlaceRepository.Setup(x => x.DeleteFavoriteStore(It.IsAny<long>(), It.IsAny<long>())).Returns(0);
+
+            var result = _storePlaceController.DeleteFavoriteStore(id);
+            Assert.IsType<BadRequestResult>(result);
+        }
+
+        [Theory]
+        [InlineData(1)]
+        [InlineData(100)]
+        public void DeleteFavoriteStoreFailTestTwo(long id)
+        {
+            _storePlaceController.ControllerContext = new ControllerContext();
+            _storePlaceController.ControllerContext.HttpContext = new DefaultHttpContext();
+
+            var token = new TokenModel() { Phone = "380120000000", Card = 1, ClientId = 1 };
+            var client = new Client_DTO();
+            _storePlaceController.ControllerContext.HttpContext.Items["token"] = token;
+
+            _mockIClientRepository.Setup(x => x.GetClientByPhone(It.IsAny<string>())).Returns(client);
+            _mockIStorePlaceRepository.Setup(x => x.DeleteFavoriteStore(It.IsAny<long>(), It.IsAny<long>())).Returns(0);
+
+            var result = _storePlaceController.DeleteFavoriteStore(id);
+            Assert.IsType<BadRequestResult>(result);
+        }
     }
 }
