@@ -500,6 +500,7 @@
     <Compile Include="Controllers\ClientMessageControllerTests.cs" />
     <Compile Include="Controllers\CreditControllerTests.cs" />
     <Compile Include="Controllers\CurrencyControllerTests.cs" />
+    <Compile Include="Controllers\DeviceDataControllerTests.cs" />
     <Compile Include="Controllers\FinControllerTests.cs" />
     <Compile Include="Controllers\GeoControllerTests.cs" />
     <Compile Include="Controllers\HomeControllerTests.cs" />
@@ -522,7 +523,7 @@
     <Compile Include="Controllers\UpdateReviewControllerTests.cs" />
     <Compile Include="Fixtures\TestHostContext.cs" />
     <Compile Include="Models\AuthModelTest.cs" />
-    <Compile Include="Models\ClientOrderControllerTests.cs" />
+    <Compile Include="Controllers\ClientOrderControllerTests.cs" />
     <Compile Include="Models\PaymentModelTest.cs" />
     <Compile Include="Models\PaymentResultModelTest.cs" />
     <Compile Include="Models\RegisterModelTest.cs" />
