@@ -269,9 +269,6 @@
     <Reference Include="Microsoft.Extensions.Hosting.Abstractions, Version=2.0.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Hosting.Abstractions.2.0.2\lib\netstandard2.0\Microsoft.Extensions.Hosting.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.Extensions.Identity.Core, Version=2.0.2.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Extensions.Identity.Core.2.0.2\lib\netstandard2.0\Microsoft.Extensions.Identity.Core.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Extensions.Localization, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Extensions.Localization.1.1.1\lib\net451\Microsoft.Extensions.Localization.dll</HintPath>
     </Reference>
@@ -521,6 +518,7 @@
     <Compile Include="Controllers\StorePlaceControllerTests.cs" />
     <Compile Include="Controllers\SupplierControllerTests.cs" />
     <Compile Include="Controllers\UpdateReviewControllerTests.cs" />
+    <Compile Include="Controllers\UserControllerTests.cs" />
     <Compile Include="Fixtures\TestHostContext.cs" />
     <Compile Include="Models\AuthModelTest.cs" />
     <Compile Include="Controllers\ClientOrderControllerTests.cs" />
